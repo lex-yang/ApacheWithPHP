@@ -1,0 +1,13 @@
+HTDOCS=$(PWD)/wordpress
+HOST_NAME=
+SITE_CONF=
+CONTAINER_NAME=
+docker run -d \
+	-e HOSTNAME=$HOST_NAME \
+	-p 80:80 \
+	-p 443:443 \
+	--link mysql8_db \
+	-v $HTDOCS:/var/www/html \
+	-v $SITE_CONF:/etc/apache2/sites-available \
+	--name $CONTAINER_NAME \
+	apache2.4-with-php7.4
